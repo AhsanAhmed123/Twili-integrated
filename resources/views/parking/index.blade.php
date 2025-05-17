@@ -44,7 +44,7 @@
                                     <i class="fas fa-home input-icon"></i>
                                    
                                     <select class="form-control" name="aprt_number" id="apartment" style="width: 100%; margin-bottom: 10px;">
-                                    <option value="">OFFICE</option>
+                                    <option value="Office">OFFICE</option>
                                     <script>
                                         for (let i = 1; i <= 348; i++) {
                                             document.write(`<option value="${i}">${i}</option>`);
