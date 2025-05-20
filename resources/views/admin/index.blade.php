@@ -47,78 +47,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Theodore</td>
-                                                <td>123-123-1324</td>
-                                                <td>10-04-2025</td>
-                                                <td>W3XJ+6FP, Plot No ST-4B</td>
-                                                <td>75462</td>
-                                                <td>Mazda/539/Black </td>
-                                                <td>A45-123</td>
+                                         @forelse ($attendent as $at)
+                                               <tr>
+                                                <td>{{ $at->name }}</td>
+                                                <td>{{ $at->contact }}</td>
+                                                <td>{{ $at->date }}</td>
+                                                <td>{{ $at->apartment }}</td>
+                                                <td>{{ $at->passcode }}</td>
+                                                <td>{{ $at->vehicle_details }}</td>
+                                                <td>{{ $at->license_number }}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Theodore</td>
-                                                <td>123-123-1324</td>
-                                                <td>10-04-2025</td>
-                                                <td>W3XJ+6FP, Plot No ST-4B</td>
-                                                <td>02116</td>
-                                                <td>Mazda/539/Black </td>
-                                                <td>A45-123</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Theodore</td>
-                                                <td>123-123-1324</td>
-                                                <td>10-04-2025</td>
-                                                <td>W3XJ+6FP, Plot No ST-4B</td>
-                                                <td>10007</td>
-                                                <td>Mazda/539/Black </td>
-                                                <td>A45-123</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Theodore</td>
-                                                <td>123-123-1324</td>
-                                                <td>10-04-2025</td>
-                                                <td>W3XJ+6FP, Plot No ST-4B</td>
-                                                <td>75462</td>
-                                                <td>Mazda/539/Black </td>
-                                                <td>A45-123</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Theodore</td>
-                                                <td>123-123-1324</td>
-                                                <td>10-04-2025</td>
-                                                <td>W3XJ+6FP, Plot No ST-4B</td>
-                                                <td>02116</td>
-                                                <td>Mazda/539/Black </td>
-                                                <td>A45-123</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Theodore</td>
-                                                <td>123-123-1324</td>
-                                                <td>10-04-2025</td>
-                                                <td>W3XJ+6FP, Plot No ST-4B</td>
-                                                <td>10007</td>
-                                                <td>Mazda/539/Black </td>
-                                                <td>A45-123</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Theodore</td>
-                                                <td>123-123-1324</td>
-                                                <td>10-04-2025</td>
-                                                <td>W3XJ+6FP, Plot No ST-4B</td>
-                                                <td>75462</td>
-                                                <td>Mazda/539/Black </td>
-                                                <td>A45-123</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Theodore</td>
-                                                <td>123-123-1324</td>
-                                                <td>10-04-2025</td>
-                                                <td>W3XJ+6FP, Plot No ST-4B</td>
-                                                <td>02116</td>
-                                                <td>Mazda/539/Black </td>
-                                                <td>A45-123</td>
-                                            </tr>
+                                         @empty
+                                             
+                                         @endforelse
+                                          
                                         </tbody>
                                     </table>
                                 </div>

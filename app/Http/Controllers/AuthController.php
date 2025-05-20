@@ -185,6 +185,7 @@ class AuthController extends Controller
 
         return back()->with('success', 'Password changed successfully.');
     }
+    
 
     public function RegisterTrainer(Request $request)
     {
@@ -267,6 +268,8 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
         }
     }
+
+  
 
 
 }
