@@ -3,24 +3,33 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParkingAttendentController;
 use App\Http\Controllers\IVRController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashbaordController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
     return redirect()->route('parking-attendent-day');
 });
 
+Route::group(['middleware' => ['admin.guest']], function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/authenticate', [AuthController::class, 'Authenticate'])->name('Auth.login');
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register-submit', [AuthController::class, 'registerSubmit'])->name('register-submit');
+    
+
+});
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::middleware('auth')->group(function () {
+Route::get('/dashboard', [DashbaordController::class, 'index'])->name('dashboard.index');
+Route::get('/night', [DashbaordController::class, 'night'])->name('dashboard.night');
+});
 Route::get('parking-attendent-day',[ParkingAttendentController::class, 'parkingAttendentDay'])->name('parking-attendent-day');
 Route::post('parking-attendent-day-store',[ParkingAttendentController::class, 'dayparkingstore'])->name('parking.store');
 Route::get('parking-attendent-night',[ParkingAttendentController::class, 'parkingAttendentNight'])->name('parking-attendent-night');
+Route::get('guest-parking-details',[ParkingAttendentController::class, 'guestparkingdetails'])->name('guest.parking.details');
+Route::get('pre-authorize',[ParkingAttendentController::class, 'preAuthorize'])->name('pre.authorize');
+Route::post('parking-preauthorize-store',[ParkingAttendentController::class, 'preAuthorizeStore'])->name('pre.authorize.store');
 
 Route::match(['get', 'post'],'/ivr/start', [IVRController::class, 'start']);
 Route::match(['get', 'post'],'/ivr/step-a1', [IVRController::class, 'stepA1']);

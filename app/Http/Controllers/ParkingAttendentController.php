@@ -43,4 +43,50 @@ class ParkingAttendentController extends Controller
         }
     
     }
+
+    public function guestparkingdetails()
+    {
+
+        return view('parking.dayguest');
+    }
+
+    public function preAuthorize(Request $request)
+    {
+
+        return view('parking.preauthorize');
+    }
+
+    public function preAuthorizeStore(Request $request)
+    {
+        $apartment = $request->input('aprt_number');
+        $passcode = $request->input('passcode');
+
+        $attendent = Attendent::where('aprt_number', $apartment)
+                        ->where('passcode', $passcode)
+                        ->first();
+        dd($attendent);
+        if (!$attendent) {
+            return back()->with('error', 'Not Registered');
+        }
+
+ 
+        if ($attendent->expiry) {
+            $createdAt = Carbon::parse($attendent->created_at);
+            $expiryHours = (int) $attendent->expiry;
+
+            $expiryDeadline = $createdAt->addHours($expiryHours);
+
+            if (now()->greaterThanOrEqualTo($expiryDeadline)) {
+                return back()->with('error', 'Invalid Passcode (expired)');
+            }
+        }
+
+        return view('parking.preauthorize', ['attendent' => $attendent]);
+        return view('parking.preauthorize');
+    }
+    
+
+
+
+
 }

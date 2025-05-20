@@ -23,7 +23,7 @@
         <!-- Sidebar Content Overlay -->
         <div class="container">
             <div class="sidebar-map">
-                <h5> <i class="fas fa-angle-left"></i> Home</h5>
+                <h5><a href="{{route('guest.parking.details')}}" class="mt-2" style="text-align: center;color: black;text-decoration: none"> <i class="fas fa-angle-left"></i> Home</a></h5>
 
                 <form method="Post" id="dayParkingForm" action="{{url('parking-attendent-day-store')}}">
                     <!-- Basic Information Section -->
@@ -44,7 +44,7 @@
                                     <i class="fas fa-home input-icon"></i>
                                    
                                     <select class="form-control" name="aprt_number" id="apartment" style="width: 100%; margin-bottom: 10px;">
-                                    <option value="">OFFICE</option>
+                                    <option value="Office">OFFICE</option>
                                     <script>
                                         for (let i = 1; i <= 348; i++) {
                                             document.write(`<option value="${i}">${i}</option>`);
